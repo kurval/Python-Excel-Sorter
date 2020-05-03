@@ -37,7 +37,7 @@ if filter_col[0] == 'y':
         x += 1
 
     columns = print("\nChoose range of columns to show")
-    from_col = int(input("Enter number of the first column to show "))
+    from_col = int(input("Enter number of the first column to show: "))
     to_col = int(input("Enter number of the last column to show: "))
     new_df = new_df.iloc[:, from_col:(to_col+1)]
 
