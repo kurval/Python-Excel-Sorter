@@ -6,4 +6,4 @@ Sort Excel/CSV File Utility using pandas. Reads a file of records, sorts them, a
   * pandas
   * os
   * re
-* OSX
+* OSX/Linux
