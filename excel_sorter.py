@@ -3,6 +3,9 @@ import pandas as pd
 pd.set_option('display.max_columns', None)
 
 def options(cols, opt):
+    '''
+    Shows column names that user can choose to sort/filter
+    '''
     x = 0
     print("\nOptions:\n")
     for col in cols:
