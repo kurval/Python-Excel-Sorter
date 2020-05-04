@@ -22,7 +22,9 @@ if form == 1:
     df = pd.read_csv(file1)
     cols = pd.read_csv(file1).columns
 else:
-    sheet = input("Enter sheet name you wish to sort: ")
+    sheet = input("\nEnter sheet name you wish to sort or hit only Enter for default (first sheet): ")
+    if not sheet:
+        sheet = 0
     df = pd.read_excel(file1,sheet)
     cols = pd.read_excel(file1).columns
 
