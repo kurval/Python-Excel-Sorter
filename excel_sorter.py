@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import pandas as pd
 import os
+import re
 pd.set_option('display.max_columns', None)
 
 def options(cols, opt):
@@ -45,7 +46,30 @@ while sort:
         continue
 new_df = df.sort_values(sorter, ascending=style)
 
-# Filter Info
+# Filter Row Info
+os.system("clear")
+filter_row = input("Would you like to filter rows with spesific value? Enter 'y' for yes and 'n' for no: ")
+if filter_row[0] == 'y':
+    os.system("clear")
+    options(cols, 0)
+    from_col = input("\nName of the column where value exist: ")
+    arg = input("Enter value you wish to filter: ").lower()
+    col_type = df[from_col].dtype.kind
+    if col_type == 'i':
+        new_df = new_df.loc[new_df[from_col] == int(arg)]
+    elif col_type == 'b':
+        if arg[0] == 'f':
+            arg = False
+        else:
+            arg = True
+        new_df = new_df.loc[new_df[from_col] == arg]
+    elif col_type == 'O':
+        new_df = new_df.loc[new_df[from_col].str.contains(arg, flags=re.I)]
+    elif col_type == 'f':
+        new_df = new_df.loc[new_df[from_col] == float(arg)]
+
+# Filter Column Info
+os.system("clear")
 filter_col = input("Would you like to filter columns? Enter 'y' for yes and 'n' for no: ")
 if filter_col[0] == 'y':
     os.system("clear")
@@ -56,6 +80,7 @@ if filter_col[0] == 'y':
     new_df = new_df.iloc[:, from_col:(to_col+1)]
 
 # Destination Info
+os.system("clear")
 dest = input("Enter destination/filename you wish to store as: ")
 if form == 1:
     new_df.to_csv(dest, index=False, sep='\t')
