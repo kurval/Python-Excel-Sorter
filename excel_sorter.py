@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pandas as pd
+import os
 pd.set_option('display.max_columns', None)
 
 def options(cols, opt):
@@ -33,6 +34,7 @@ sorter = []
 style = []
 sort = True
 while sort:
+    os.system("clear")
     options(cols, 0)
     sorter.append(input(("\nName of the column you wish to sort by: ")))
     style.append(int(input("Type '1' for Ascending, '0' for Descending sort: ")))
@@ -46,7 +48,7 @@ new_df = df.sort_values(sorter, ascending=style)
 # Filter Info
 filter_col = input("Would you like to filter columns? Enter 'y' for yes and 'n' for no: ")
 if filter_col[0] == 'y':
-    
+    os.system("clear")
     options(cols, 1)
     columns = print("\nChoose range of columns to show")
     from_col = int(input("Enter number of the first column to show: "))
@@ -54,7 +56,7 @@ if filter_col[0] == 'y':
     new_df = new_df.iloc[:, from_col:(to_col+1)]
 
 # Destination Info
-dest = input("Enter destination and filename you wish to store as: ")
+dest = input("Enter destination/filename you wish to store as: ")
 if form == 1:
     new_df.to_csv(dest, index=False, sep='\t')
 else:
