@@ -83,6 +83,6 @@ if filter_col[0] == 'y':
 os.system("clear")
 dest = input("Enter destination/filename you wish to store as: ")
 if form == 1:
-    new_df.to_csv(dest, index=False, sep='\t')
+    new_df.to_csv(dest, index=False)
 else:
     new_df.to_excel(dest, index=False)
