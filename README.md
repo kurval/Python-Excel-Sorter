@@ -1,5 +1,5 @@
-# Python-Excel-Sorter
-Simple excel sorter using pandas lib. Filter and sort csv and excel files. Allows the user to choose particular fields for sorting and filtering data.
+# Python-Excel/CSC-Sorter
+Simple excel sorter using pandas lib. Reads a file of records, sorts them, and then writes them back to the file. Allow the user to choose various sort style and sorting based on a particular field.
 # Requirements
 * Python 3
 * Libs:
