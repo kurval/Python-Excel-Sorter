@@ -17,6 +17,25 @@ def options(cols, opt):
             print(col)
         x += 1
 
+def filter_value(df, from_col, arg):
+    '''
+    Filtering rows based on user's input/value.
+    '''
+    col_type = df[from_col].dtype.kind
+    if col_type == 'i':
+        new_df = df.loc[df[from_col] == int(arg)]
+    elif col_type == 'b':
+        if arg[0] == 'f':
+            arg = False
+        else:
+            arg = True
+        new_df = df.loc[df[from_col] == arg]
+    elif col_type == 'O':
+        new_df = df.loc[df[from_col].str.contains(arg, flags=re.I)]
+    elif col_type == 'f':
+        new_df = df.loc[df[from_col] == float(arg)]
+    return new_df
+
 # Source Info
 form = int(input("Do you want to open csv or excel file? Enter '1' for CSV or '2' for excel: "))
 file1 = input("Enter location/name of file: ")
@@ -50,23 +69,18 @@ new_df = df.sort_values(sorter, ascending=style)
 os.system("clear")
 filter_row = input("Would you like to filter rows with spesific value? Enter 'y' for yes and 'n' for no: ")
 if filter_row[0] == 'y':
-    os.system("clear")
-    options(cols, 0)
-    from_col = input("\nName of the column where value exist: ")
-    arg = input("Enter value you wish to filter: ").lower()
-    col_type = df[from_col].dtype.kind
-    if col_type == 'i':
-        new_df = new_df.loc[new_df[from_col] == int(arg)]
-    elif col_type == 'b':
-        if arg[0] == 'f':
-            arg = False
+    sort = True
+    while sort:    
+        os.system("clear")
+        options(cols, 0)
+        from_col = input("\nName of the column where value exist: ")
+        arg = input("Enter value you wish to filter: ").lower()
+        new_df = filter_value(new_df, from_col, arg)
+        sort = input("Do you want to use another value for for filtering? Enter 'y' for yes and 'n' no: ")
+        if sort[0] == 'n':
+            sort = False
         else:
-            arg = True
-        new_df = new_df.loc[new_df[from_col] == arg]
-    elif col_type == 'O':
-        new_df = new_df.loc[new_df[from_col].str.contains(arg, flags=re.I)]
-    elif col_type == 'f':
-        new_df = new_df.loc[new_df[from_col] == float(arg)]
+            continue
 
 # Filter Column Info
 os.system("clear")
