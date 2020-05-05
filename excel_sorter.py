@@ -9,6 +9,7 @@ os.system("clear")
 # Source Info
 while True:
     try:
+        print("open file\n\n".upper())
         print("Options:\n\n1: CSV\n2: excel")
         form = int(input("\nEnter number of the file format: "))
         file1 = input("Enter location/name of file: ")
@@ -34,6 +35,7 @@ style = []
 sort = True
 while sort:
     os.system("clear")
+    print("sort section (1)\n".upper())
     options(cols, 0)
     sorter.append(input(("\nName of the column you wish to sort by: ")))
     style.append(int(input("Type '1' for Ascending, '0' for Descending sort: ")))
@@ -51,6 +53,7 @@ if filter_row[0] == 'y':
     sort = True
     while sort:    
         os.system("clear")
+        print("filter section (1)\n".upper())
         options(cols, 0)
         from_col = input("\nName of the column where value exist: ")
         new_df = filter_value(new_df, from_col)
@@ -65,6 +68,7 @@ os.system("clear")
 filter_col = input("Would you like to filter columns? Enter 'y' for yes and 'n' for no: ")
 if filter_col[0] == 'y':
     os.system("clear")
+    print("filter section (2)\n".upper())
     options(cols, 1)
     columns = print("\nChoose range of columns to show")
     from_col = int(input("Enter number of the first column to show: "))
@@ -73,6 +77,7 @@ if filter_col[0] == 'y':
 
 # Destination Info
 os.system("clear")
+print("save file\n\n".upper())
 dest = input("Enter destination/filename you wish to store as: ")
 if form == 1:
     new_df.to_csv(dest, index=False)
