@@ -6,7 +6,7 @@ def choose_separator():
     Allowing user to choose an operator for numeric values
     '''
     os.system("clear")
-    print("Options:\n1: == Equal to\n2: >= Greater or equal to\n3: <= Less or equal to")
+    print("Options:\n\n1: == Equal to\n2: >= Greater or equal to\n3: <= Less or equal to")
     while True:
         try:
             sep = int(input("\nEnter number of separator: "))
