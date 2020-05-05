@@ -7,18 +7,26 @@ pd.set_option('display.max_columns', None)
 os.system("clear")
 
 # Source Info
-print("Options:\n\n1: CSV\n2: excel")
-form = int(input("\nEnter number of the file format: "))
-file1 = input("Enter location/name of file: ")
-if form == 1:
-    df = pd.read_csv(file1)
-    cols = pd.read_csv(file1).columns
-else:
-    sheet = input("\nEnter sheet name you wish to sort or hit only Enter for default (first sheet): ")
-    if not sheet:
-        sheet = 0
-    df = pd.read_excel(file1,sheet,na_values=['NA'])
-    cols = pd.read_excel(file1).columns
+while True:
+    try:
+        print("Options:\n\n1: CSV\n2: excel")
+        form = int(input("\nEnter number of the file format: "))
+        file1 = input("Enter location/name of file: ")
+        if form == 1:
+            df = pd.read_csv(file1)
+            cols = pd.read_csv(file1).columns
+        else:
+            sheet = input("\nEnter sheet name you wish to sort or hit only Enter for default (first sheet): ")
+            if not sheet:
+                sheet = 0
+            df = pd.read_excel(file1,sheet,na_values=['NA'])
+            cols = pd.read_excel(file1).columns
+    except:
+        os.system("clear")
+        print("Try again")
+        continue
+    else:
+        break
 
 # Sort Info
 sorter = []
@@ -38,7 +46,7 @@ new_df = df.sort_values(sorter,ascending=style)
 
 # Filter Row Info
 os.system("clear")
-filter_row = input("Would you like to filter rows with spesific value? Enter 'y' for yes and 'n' for no: ")
+filter_row = input("Would you like to filter rows with spesific value?\n\nEnter 'y' for yes and 'n' for no: ")
 if filter_row[0] == 'y':
     sort = True
     while sort:    
