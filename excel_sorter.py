@@ -7,7 +7,8 @@ pd.set_option('display.max_columns', None)
 os.system("clear")
 
 # Source Info
-form = int(input("Do you want to open csv or excel file? Enter '1' for CSV or '2' for excel: "))
+print("Options:\n\n1: CSV\n2: excel")
+form = int(input("\nEnter number of the file format: "))
 file1 = input("Enter location/name of file: ")
 if form == 1:
     df = pd.read_csv(file1)
