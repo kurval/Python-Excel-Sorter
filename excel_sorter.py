@@ -3,6 +3,16 @@ import pandas as pd
 import os
 import re
 pd.set_option('display.max_columns', None)
+os.system("clear")
+
+def choose_separator():
+    '''
+    Allowing user to choose an operator for numeric values
+    '''
+    os.system("clear")
+    print("Options:\n1: == Equal to\n2: >= Greater or equal to\n3: <= Less or equl to")
+    sep= int(input("\nEnter number of separator: "))
+    return sep
 
 def options(cols, opt):
     '''
@@ -17,13 +27,22 @@ def options(cols, opt):
             print(col)
         x += 1
 
-def filter_value(df, from_col, arg):
+def filter_value(df, from_col):
     '''
     Filtering rows based on user's input/value.
     '''
     col_type = df[from_col].dtype.kind
+    if col_type == 'i' or col_type == 'f':
+        sep = choose_separator()
+    print(col_type)
+    arg = input("Enter value you wish to filter: ").lower()
     if col_type == 'i':
-        new_df = df.loc[df[from_col] == int(arg)]
+        if sep == 1:
+            new_df = df.loc[df[from_col] == int(arg)]
+        elif sep == 2:
+            new_df = df.loc[df[from_col] >= int(arg)]
+        else:
+            new_df = df.loc[df[from_col] <= int(arg)]
     elif col_type == 'b':
         if arg[0] == 'f':
             arg = False
@@ -33,7 +52,12 @@ def filter_value(df, from_col, arg):
     elif col_type == 'O':
         new_df = df.loc[df[from_col].str.contains(arg, flags=re.I)]
     elif col_type == 'f':
-        new_df = df.loc[df[from_col] == float(arg)]
+        if sep == 1:
+            new_df = df.loc[df[from_col] == float(arg)]
+        elif sep == 2:
+            new_df = df.loc[df[from_col] >= float(arg)]
+        else:
+            new_df = df.loc[df[from_col] <= float(arg)]
     return new_df
 
 # Source Info
@@ -46,7 +70,7 @@ else:
     sheet = input("\nEnter sheet name you wish to sort or hit only Enter for default (first sheet): ")
     if not sheet:
         sheet = 0
-    df = pd.read_excel(file1,sheet)
+    df = pd.read_excel(file1,sheet,na_values=['NA'])
     cols = pd.read_excel(file1).columns
 
 # Sort Info
@@ -74,8 +98,7 @@ if filter_row[0] == 'y':
         os.system("clear")
         options(cols, 0)
         from_col = input("\nName of the column where value exist: ")
-        arg = input("Enter value you wish to filter: ").lower()
-        new_df = filter_value(new_df, from_col, arg)
+        new_df = filter_value(new_df, from_col)
         sort = input("Do you want to use another value for for filtering? Enter 'y' for yes and 'n' no: ")
         if sort[0] == 'n':
             sort = False
