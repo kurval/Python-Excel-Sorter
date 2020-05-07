@@ -80,6 +80,8 @@ if filter_col[0] == 'y':
 # Destination Info
 os.system("clear")
 print(f"{headings['head4']}\n\n".upper())
+print("Options:\n\n1: CSV\n2: excel")
+form = int(input("\nEnter number of the file format: "))
 dest = input("Enter destination/filename you wish to store as: ")
 if form == 1:
     new_df.to_csv(dest, index=False)
