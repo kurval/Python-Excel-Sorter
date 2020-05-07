@@ -21,7 +21,6 @@ def choose_format():
                 break
     return form
 
-
 def choose_separator():
     '''
     Allowing user to choose an operator for numeric values
