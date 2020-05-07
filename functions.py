@@ -1,5 +1,27 @@
 import os, re
 
+def choose_format():
+    '''
+    Allowing user to choose file format
+    '''
+    while True:
+        try:
+            print("Options:\n\n1: CSV\n2: excel")
+            form = int(input("\nEnter number of the file format: "))
+        except:
+            os.system("clear")
+            print("Please try again!\n".upper())
+            continue
+        else:
+            if form != 1 and form != 2:
+                os.system("clear")
+                print("Incorrect number!\n".upper())
+                continue
+            else:
+                break
+    return form
+
+
 def choose_separator():
     '''
     Allowing user to choose an operator for numeric values
@@ -11,7 +33,7 @@ def choose_separator():
         try:
             sep = int(input("\nEnter number of separator: "))
         except TypeError:
-            print("Try again")
+            print("Please try again!")
             continue
         else:
             break
