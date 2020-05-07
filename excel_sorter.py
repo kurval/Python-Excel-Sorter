@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import pandas as pd
-import os
-import re
+import os, re
 from functions import options, choose_separator, filter_value
 pd.set_option('display.max_columns', None)
 os.system("clear")

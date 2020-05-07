@@ -1,5 +1,4 @@
-import os
-import re
+import os, re
 
 def choose_separator():
     '''
